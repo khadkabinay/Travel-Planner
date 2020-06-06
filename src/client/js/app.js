@@ -1,88 +1,76 @@
         
       
+        // geoNames api info
+         //http://api.geonames.org/postalCodeSearchJSON?placename=houston&username=binu
+         const geoBaseUrl       = 'http://api.geonames.org/postalCodeSearchJSON?';
+         const userName = "binu";
+      
+      
+         // weatherbit api info
+         // baseUrl = https://api.weatherbit.io/v2.0/history/daily?
+         // api_key = aa99a52e41d9409fa54a33d56fe394d2
 
 
-        //define api key and baseUrl as well as other  variable
-        const baseUrl       = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-        const apiKey        = ',us&appid=aa8cfcd8d005e411efb192da9b6eaa9f'
+        // pixabay api info
 
-        let tempUnit        = '&units=imperial';
-        let Fahrenheit      = ' °F';
-
-
-        // click event on generate button 
+        //baseUrl = https://pixabay.com/api/?
+         //api_key = 16907629-fae8b9893441944e32484016c
+        
+        //baseUrl with image search of houston city
+        //https://pixabay.com/api/?key=16907629-fae8b9893441944e32484016c&q=houston&image_type=photo
+ 
       
         
         
         
         // generate new date
-        const dateGenerator = () => {
-                let d        = new Date()
-                let month    = d.getMonth() 
-                let date     = d.getDate()
-                let year     = d.getFullYear()
-                let fullDate = ` ${month + 1}/${date}/${year}`
-            return fullDate;
+        // const dateGenerator = () => {
+        //         let d        = new Date()
+        //         let month    = d.getMonth() 
+        //         let date     = d.getDate()
+        //         let year     = d.getFullYear()
+        //         let fullDate = `${year}-${month + 1}-${day}`
+        //     return fullDate;
 
-            }
+        //     }
 
         
         // define a function that is called when generate button is clicked with chaining promises 
          function tempFeelingTeller(event){
                     event.preventDefault()
             // input fields
-                let  zipCode     = document.getElementById('zip').value
-                let  feelings    =  document.getElementById('feelings').value
-                let errorContent = document.getElementById('error-content')
-                let fullUrl      = ''
+              let  city = document.getElementById('zip').value
+        
+                let  geoNamesFullUrl = `${geoBaseUrl}placename=${city}&username=${userName}`
+            
 
-                // asigning dateGenerator functon to a variable 
-                    let date    = dateGenerator();
 
-                //  zip and feelings have to be filled out
-                
-                if(zipCode && feelings){
-                    
-                    //check if zipcode is number
-                    if(!Number(zipCode)){
-                    
-                        errorContent.innerHTML += "Please! Zip code must be number"
-                    }else if (zipCode.toString().length < 5 || zipCode.toString().length > 5){
-                        
-                        errorContent.innerHTML += "Please! Zip code must be 5 numbers"
-
-                    }else{
-
-                        fullUrl   += baseUrl + zipCode + apiKey + tempUnit
-                    
-                        // fetch data from weather api
-                        getTemperate(fullUrl)
+                     // fetch data from weather api
+                        getTemperate(geoNamesFullUrl)
                         
                         .then( (data)=>{
                         //asigning fetched data to a variable 
-                            let weatherData  = data
-                            let tempWithUnit = `${Math.floor(weatherData.main.temp)} ${Fahrenheit}`
+                            console.log(data)
+                         let placeName = data.postalCodes[0].placeName
+                         let countryCode = data.postalCodes[0].countryCode
+                         let lat = data.postalCodes[0].lat
+                         let lng = data.postalCodes[0].lng
+
+                            
+                            
                     
                         // add an object as post route to server
-                        postData('http://localhost:3000/addFeelWith', {temp:tempWithUnit, feel:feelings ,date:date} );
+                        postData('http://localhost:3000/addFeelWith', {placeName:placeName, countryCode:countryCode, lat:lat, lng:lng  } );
                 
                         //fetch all data from server and update into dom 
                         updateUI();
-                    })};
+                    })
+                };
 
-                }
-                //check if either of input is not filled 
-                else if (!zipCode && !feelings){
-                    errorContent.innerHTML = "Something went wrong! Please try again !!"
-                    
-                } else if(!feelings){
-                    errorContent.innerHTML += "Please ! Say something about your feeling"
-
-                } else if(!zipCode){
-                errorContent.innerHTML += "Please! Enter your zip code"
-                } 
                 
-            };
+                
+                
+            
             
             
 
@@ -94,6 +82,7 @@
             const response = await fetch(url)
                 try{
                     const weatherData = await response.json()
+                    console.log(weatherData)
                     return weatherData;
                 
                 }catch(error){
@@ -104,7 +93,7 @@
         
         
         
-        // postData function define
+        //postData function define
         
         const postData = async (url = " ", data = {})=>{
 
@@ -140,8 +129,7 @@
             try{
                 //update to the dom dynamically
                     const allData = await request.json();
-                    document.getElementById('temp').innerHTML    = ` ${allData.temp}`;
-                    document.getElementById('date').innerHTML    = ` ${allData.date}`;
+                    document.getElementById('temp').innerHTML    = ` ${allData.placeName}, ${allData.countryCode}, ${allData.lat}, ${allData.lng}`
                     document.getElementById('content').innerHTML = ` ${allData.feelings}`;
         
             }catch(error){

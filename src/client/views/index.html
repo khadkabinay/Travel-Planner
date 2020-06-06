@@ -12,31 +12,41 @@
             Travel App
         </div>
        
-        <!--  zip code holder container -->
-        <div class ="zip-code-holder">
-            <label for="zip">Enter Zip Code Here</label> <br>
-            <input type="text" id="zip" placeholder="Enter Zip Code Here">
+        <!--  location holder container -->
+        <div class ="location-holder">
+            <label for="desti-location">My trip to:</label>
+            <input type="text" id="desti-location" placeholder="Enter your location"><br>
+        </div> <br>
+        
+        <div class ="depart-date-holder">
+            <label for="departure">Departing:</label>
+            <input type="date" id="departure" ><br>
+        </div> <br>
+        
+        <div class ="return-date-holder">
+            <label for="returning">Returning:</label> 
+            <input type="date" id="returning" ><br>
         </div>
        
-        <!-- feeling holder container -->
-        <div class ="feelings-holder">
-            <div id = "error-content"></div><br>
-            <label for="feelings">How are you feeling today?</label><br>
-            <textarea class= "myInput" id="feelings" placeholder="Enter Your Feelings Here" rows="6" cols="20"></textarea><br>
-            <button id="generate" type = "submit"> Submit </button>
-        </div>
+         <div class ="luggage-info-holder"><br>
+            <label for="luggage-info">Provide your luggage's info</label><br>
+            <textarea class= "my-info" id="luggage-info" placeholder="your luggage informations go here" rows="6" cols="20"></textarea><br>
+           
+          </div>
+
+            <button id="save-trip" type = "submit"> Save Trip </button>
         
         <!-- result holder container -->
-        <div class = "result-holder">
-            <div class = "title"><strong> Your Most Recent Entry</strong></div>
-            <div id = "entryHolder">
-                <div><strong>Today's Date:</strong><span id ="date"></span></div> 
-                <div><strong>Temperature:</strong><span id ="temp"></span></div>
-                <div><strong>Your Feelings:</strong><span id ="content"></span></div>
-            </div>
+        <div class = "results-holder">
+             <div><strong>Location's image:</strong><span id ="location-img"></span></div>
+             <div><strong>My trip to:</strong><span id ="loc-day-info"></span></div>
+             <div><strong>Typical weather:</strong><span id ="high-min-temp"></span></div>
+             <div><strong>Weather more Info:</strong><span id ="average-temp"></span></div>
+             <div><strong>Luggage info:</strong><span id ="info-result"></span></div>
+        
            
             <!-- footer -->
-            <div id = "footer">@COPYRIGHT 2020 Weather Journal App</div>
+            <div id = "footer">@COPYRIGHT 2020 Travel App</div>
         </div>
 </div>
 <script type="text/javascript" src="../../../dist/main.js"></script>

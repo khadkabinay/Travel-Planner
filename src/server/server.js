@@ -49,16 +49,18 @@
       })
 
 
-        // add api fetched data and feelings into an object
+       // add api fetched data and feelings into an object
 
         app.post('/addFeelWith', addTempToObj);
 
         function addTempToObj(req,res){
           
           // data coming as post request asigned to an object
-         let newEntry = {temp: req.body.temp,
-                      feelings: req.body.feel,
-                      date:req.body.date
+         let newEntry = {placeName: req.body.placeName,
+                        countryCode:req.body.countryCode, 
+                        lat:req.body.lat, 
+                        lng:req.body.lng
+                      
                         }
         // asigning newEntry object to endpoint object named projectData
           projectData = newEntry;
