@@ -51,26 +51,27 @@
 
        // add api fetched data and feelings into an object
 
-        app.post('/addFeelWith', addTempToObj);
+        app.post('/addAll', addAllToObj);
 
-        function addTempToObj(req,res){
+        function addAllToObj(req,res){
           
           // data coming as post request asigned to an object
-         let newEntry = {placeName: req.body.placeName,
-                        countryCode:req.body.countryCode, 
-                        lat:req.body.lat, 
-                        lng:req.body.lng
-                      
-                        }
-        // asigning newEntry object to endpoint object named projectData
-          projectData = newEntry;
+     
+         projectData.placeName = req.body.placeName
+         projectData.countryCode = req.body.countryCode
+         projectData.low_temp = req.body.low_temp
+         projectData.high_temp = req.body.high_temp
+         projectData.weathDescription = req.body.weathDescription
+         projectData.pixPhoto = req.body.pixPhoto
+
+
             res.send(projectData)
          };
         
 
 
 
-        // send end point object where it is fetched 
+        //send end point object where it is fetched 
         app.get("/all", getFeelingsWethData);
 
         function getFeelingsWethData(req,res){

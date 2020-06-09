@@ -22,27 +22,22 @@
             <label for="departure">Departing:</label>
             <input type="date" id="departure" ><br>
         </div> <br>
-        
-        <div class ="return-date-holder">
-            <label for="returning">Returning:</label> 
-            <input type="date" id="returning" ><br>
-        </div>
-       
-         <div class ="luggage-info-holder"><br>
-            <label for="luggage-info">Provide your luggage's info</label><br>
-            <textarea class= "my-info" id="luggage-info" placeholder="your luggage informations go here" rows="6" cols="20"></textarea><br>
+            <div><img src="" alt="Pixabay image" id ="location-img" style ="width:300px; height: 300px;"></div>
+           <div><strong>Your trip to:</strong><span id ="place-info"></span></div>
+           <div><strong>Departing:</strong><span id ="departing-date"></span></div>
            
-          </div>
 
             <button id="save-trip" type = "submit"> Save Trip </button>
+            <button id="save-trip" type = "submit"> remove Trip </button>
         
         <!-- result holder container -->
         <div class = "results-holder">
-             <div><strong>Location's image:</strong><span id ="location-img"></span></div>
-             <div><strong>My trip to:</strong><span id ="loc-day-info"></span></div>
-             <div><strong>Typical weather:</strong><span id ="high-min-temp"></span></div>
-             <div><strong>Weather more Info:</strong><span id ="average-temp"></span></div>
-             <div><strong>Luggage info:</strong><span id ="info-result"></span></div>
+            
+             <div><strong></strong><span id ="days-count-info"></span></div>
+             <div><strong>Typical weather for then is:</strong><br><span id ="min-high-temp"></span></div>
+             <div><strong></strong><span id ="weather-temp"></span></div>
+           
+           
         
            
             <!-- footer -->

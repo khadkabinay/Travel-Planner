@@ -3,69 +3,114 @@
         // geoNames api info
          //http://api.geonames.org/postalCodeSearchJSON?placename=houston&username=binu
          const geoBaseUrl       = 'http://api.geonames.org/postalCodeSearchJSON?';
-         const userName = "binu";
+         const geoApiUsername = "binu";
       
       
          // weatherbit api info
-         // baseUrl = https://api.weatherbit.io/v2.0/history/daily?
-         // api_key = aa99a52e41d9409fa54a33d56fe394d2
+         const weathBaseUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?'
+         const weathApi_key = 'aa99a52e41d9409fa54a33d56fe394d2'
+        //  https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
 
 
-        // pixabay api info
+               // pixabay api info
 
-        //baseUrl = https://pixabay.com/api/?
-         //api_key = 16907629-fae8b9893441944e32484016c
-        
+       const  pixBaseUrl = 'https://pixabay.com/api/?'
+       const  PixApi_key = '16907629-fae8b9893441944e32484016c'
+         
         //baseUrl with image search of houston city
         //https://pixabay.com/api/?key=16907629-fae8b9893441944e32484016c&q=houston&image_type=photo
+
+
+        // access user input and define variables
+        
+      
+        
+        
+
+      
+
+          
+
+
+  
+      
  
       
         
         
         
-        // generate new date
-        // const dateGenerator = () => {
-        //         let d        = new Date()
-        //         let month    = d.getMonth() 
-        //         let date     = d.getDate()
-        //         let year     = d.getFullYear()
-        //         let fullDate = `${year}-${month + 1}-${day}`
-        //     return fullDate;
+        //generate new date
+        const dateGenerator = () => {
+                let d        = new Date()
+                let month    = d.getMonth() 
+                let date     = d.getDate()
+                let year     = d.getFullYear()
+                let fullDate = `${year}-${month + 1}-${date}`
+            return fullDate;
 
-        //     }
+            }
 
         
         // define a function that is called when generate button is clicked with chaining promises 
-         function tempFeelingTeller(event){
-                    event.preventDefault()
-            // input fields
-              let  city = document.getElementById('zip').value
-        
-                let  geoNamesFullUrl = `${geoBaseUrl}placename=${city}&username=${userName}`
-            
+         function geoNamesCaller(evt){
+             evt.preventDefault()
+                   
+                    let  city = document.getElementById('desti-location').value
+                    let  geoNamesFullUrl = `${geoBaseUrl}placename=${city}&username=${geoApiUsername}`
+                    let fetchedData = {}
+                    
+                    // let placeName =''
+                    // let countryCode =''
+                    // let lat = 0
+                    // let lng = 0
+                    // let low_temp = 0
+                    // let high_temp = 0
+                    // let weathDescription =''
 
-
-                     // fetch data from weather api
-                        getTemperate(geoNamesFullUrl)
+                    
+                    
+                            
+                  
+                    
+                    // fetch data from weather api
+                        fetchApiCall(geoNamesFullUrl)
                         
                         .then( (data)=>{
-                        //asigning fetched data to a variable 
                             console.log(data)
-                         let placeName = data.postalCodes[0].placeName
-                         let countryCode = data.postalCodes[0].countryCode
-                         let lat = data.postalCodes[0].lat
-                         let lng = data.postalCodes[0].lng
+                        // asigning fetched data to a variable
+                          fetchedData.placeName = data.postalCodes[0].placeName
+                       
+                          fetchedData.countryCode = data.postalCodes[0].countryCode
+                          fetchedData.lat = data.postalCodes[0].lat
+                           fetchedData.lng = data.postalCodes[0].lng
+                            
+                         let  weathbitFullUrl = `${weathBaseUrl}city=${fetchedData.placeName},${fetchedData.countryCode}&lat=${fetchedData.lat}&lon=${fetchedData.lng}&key=${weathApi_key}`
+                           return  fetchApiCall(weathbitFullUrl)
+                          
+                             })
+                        
+                            .then(weathData => {
+                                console.log(weathData)
+                                fetchedData.low_temp = weathData.data[0].low_temp
+                           
+                                fetchedData.high_temp = weathData.data[0].high_temp
+                                fetchedData.weathDescription = weathData.data[0].weather.description
+                               let  pixabayFulUrl = `${pixBaseUrl}key=${PixApi_key}&q=${city}&image_type=photo`
+                               return fetchApiCall(pixabayFulUrl)
+                            })
+                       
+                          .then(pixaData =>{
+                              let pixPhoto = pixaData.hits[0].webformatURL
+                           
+                              postData("http://localhost:3000/addAll" ,{placeName:fetchedData.placeName, countryCode:fetchedData.countryCode, low_temp:fetchedData.low_temp, high_temp:fetchedData.high_temp,weathDescription:fetchedData.weathDescription,pixPhoto:pixPhoto })
+                           
+                                //fetch all data from server and update into dom 
+                             updateUI();
+                          })
+                    };
 
-                            
-                            
-                    
-                        // add an object as post route to server
-                        postData('http://localhost:3000/addFeelWith', {placeName:placeName, countryCode:countryCode, lat:lat, lng:lng  } );
-                
-                        //fetch all data from server and update into dom 
-                        updateUI();
-                    })
-                };
+        
+
 
                 
                 
@@ -77,13 +122,13 @@
 
         
         // define fetch for api call
-        const getTemperate  = async (url) =>{
+            const fetchApiCall  = async (url) =>{
 
-            const response = await fetch(url)
-                try{
-                    const weatherData = await response.json()
-                    console.log(weatherData)
-                    return weatherData;
+                const response = await fetch(url)
+                 try{
+                    const responseData = await response.json()
+                    console.log(responseData)
+                    return responseData;
                 
                 }catch(error){
                     console.log("error", error)
@@ -92,6 +137,9 @@
         
         
         
+
+        // add an object as post route to server
+        //   postData('http://localhost:3000/addFeelWith', {placeName:placeName, countryCode:countryCode, lat:lat, lng:lng  } );
         
         //postData function define
         
@@ -120,6 +168,8 @@
         
         
         
+
+        
         
         // updateUI function define
         const updateUI = async ()=> {
@@ -129,15 +179,22 @@
             try{
                 //update to the dom dynamically
                     const allData = await request.json();
-                    document.getElementById('temp').innerHTML    = ` ${allData.placeName}, ${allData.countryCode}, ${allData.lat}, ${allData.lng}`
-                    document.getElementById('content').innerHTML = ` ${allData.feelings}`;
+                    document.getElementById('days-count-info').innerHTML    = ` ${allData.placeName}, ${allData.countryCode} is 220 days away`
+                    document.getElementById('place-info').innerHTML    = ` ${allData.placeName}, ${allData.countryCode}`
+                    document.getElementById('departing-date').innerHTML    = ` ${dateGenerator()}`
+                    document.getElementById('min-high-temp').innerHTML    = ` min: ${allData.low_temp} °c /high: ${allData.high_temp} °c`
+                    document.getElementById('weather-temp').innerHTML    = ` ${allData.weathDescription}`
+                    document.getElementById('location-img').src = `  ${allData.pixPhoto}`;
         
+                    
             }catch(error){
                 console.log("error",  error);
         }
         };
 
 
+       
 
-    export {tempFeelingTeller}
+
+    export {geoNamesCaller}
         
