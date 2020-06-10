@@ -59,6 +59,7 @@
      
          projectData.placeName = req.body.placeName
          projectData.countryCode = req.body.countryCode
+         projectData.departureDate = req.body.departureDate
          projectData.low_temp = req.body.low_temp
          projectData.high_temp = req.body.high_temp
          projectData.weathDescription = req.body.weathDescription
@@ -72,9 +73,9 @@
 
 
         //send end point object where it is fetched 
-        app.get("/all", getFeelingsWethData);
+        app.get("/all",getGeoWeathPixData);
 
-        function getFeelingsWethData(req,res){
+        function getGeoWeathPixData(req,res){
                     res.send(projectData)
 
         };

@@ -14,17 +14,24 @@
        
         <!--  location holder container -->
         <div class ="location-holder">
-            <label for="desti-location">My trip to:</label>
-            <input type="text" id="desti-location" placeholder="Enter your location"><br>
-        </div> <br>
+            <label for="desti-location">Your trip to:</label>
+            <input type="text" id="desti-location" placeholder="city -required"><br>
+        </div>
+         <div id = "error-content"></div><br>
         
         <div class ="depart-date-holder">
             <label for="departure">Departing:</label>
-            <input type="date" id="departure" ><br>
+            <input type="date" id="departure-date"><br>
         </div> <br>
+        <div class ="depart-date-holder">
+            <label for="departure">Returning:</label>
+            <input type="date" id="return-date"><br>
+        </div> <br>
+
             <div><img src="" alt="Pixabay image" id ="location-img" style ="width:300px; height: 300px;"></div>
            <div><strong>Your trip to:</strong><span id ="place-info"></span></div>
            <div><strong>Departing:</strong><span id ="departing-date"></span></div>
+           <div><strong>Returning:</strong><span id ="returning-date"></span></div>
            
 
             <button id="save-trip" type = "submit"> Save Trip </button>
