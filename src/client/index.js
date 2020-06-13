@@ -1,5 +1,5 @@
 import {geoWeathPixCaller} from './js/app.js'
-import "./styles/header.scss"
+import "./styles/style.scss"
     
     
     

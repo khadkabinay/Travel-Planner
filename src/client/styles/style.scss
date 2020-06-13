@@ -1,0 +1,27 @@
+@import 'config.scss';
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    background-color: $light-color;
+    font-family: $font-stack;
+    
+}
+
+.input-error{
+    border: 2px solid $err-color;
+    color: $err-color;
+    &:focus{
+        background-color: grey;
+    }
+}
+
+.loc-img{
+    background-image: url("https://cdn.pixabay.com/photo/2017/05/13/09/04/question-2309042_960_720.jpg");
+}
+

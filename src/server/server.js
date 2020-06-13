@@ -44,7 +44,7 @@
         };
 
 
-         app.get('/', function (req, res) {
+    app.get('/', function (req, res) {
           res.sendFile('dist/index.html')
       })
 
@@ -57,16 +57,15 @@
           
           // data coming as post request asigned to an object
      
-         projectData.placeName = req.body.placeName
-         projectData.countryCode = req.body.countryCode
-         projectData.departureDate = req.body.departureDate
-         projectData.low_temp = req.body.low_temp
-         projectData.high_temp = req.body.high_temp
+         projectData.placeName        = req.body.placeName
+         projectData.countryCode      = req.body.countryCode
+         projectData.departureDate    = req.body.departureDate
+         projectData.low_temp         = req.body.low_temp
+         projectData.high_temp        = req.body.high_temp
          projectData.weathDescription = req.body.weathDescription
-         projectData.pixPhoto = req.body.pixPhoto
-
-
-            res.send(projectData)
+         projectData.pixPhoto         = req.body.pixPhoto
+            
+         res.send(projectData)
          };
         
 

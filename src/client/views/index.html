@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Travel App</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <!-- top-container -->
@@ -15,7 +15,7 @@
         <!--  location holder container -->
         <div class ="location-holder">
             <label for="desti-location">Your trip to:</label>
-            <input type="text" id="desti-location" placeholder="city -required"><br>
+            <input type="text" id="desti-location" placeholder="City= Houston"><br>
         </div>
          <div id = "error-content"></div><br>
         
@@ -27,8 +27,8 @@
             <label for="departure">Returning:</label>
             <input type="date" id="return-date"><br>
         </div> <br>
-
-            <div><img src="" alt="Pixabay image" id ="location-img" style ="width:300px; height: 300px;"></div>
+           
+          <div><img src="https://cdn.pixabay.com/photo/2016/07/11/06/09/skyline-1509136_960_720.jpg" alt="Pixabay image" id ="location-img"  style ="width:300px; height: 300px;"></div>
            <div><strong>Your trip to:</strong><span id ="place-info"></span></div>
            <div><strong>Departing:</strong><span id ="departing-date"></span></div>
            <div><strong>Returning:</strong><span id ="returning-date"></span></div>
@@ -38,7 +38,7 @@
             <button id="save-trip" type = "submit"> remove Trip </button>
         
         <!-- result holder container -->
-        <div class = "results-holder">
+        <div id = "result-hold" class = "results-holder">
             
              <div><strong></strong><span id ="days-count-info"></span></div>
              <div><strong>Typical weather for then is:</strong><br><span id ="min-high-temp"></span></div>
