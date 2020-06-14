@@ -24,8 +24,8 @@
     // define a function that is called when generate button is clicked with chaining promises 
         function geoWeathPixCaller(evt){
             evt.preventDefault()
-            let  city            = document.getElementById('desti-location').value
-            let departureDate    = document.getElementById('departure-date').value
+            const  city            = document.getElementById('desti-location').value
+            const departureDate    = document.getElementById('departure-date').value
             let  geoNamesFullUrl = `${geoBaseUrl}placename=${city}&username=${geoApiUsername}`
             let fetchedData      = {}
               

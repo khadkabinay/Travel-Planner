@@ -1,27 +1,169 @@
-@import 'config.scss';
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-
-body{
-    background-color: $light-color;
-    font-family: $font-stack;
     
-}
+    
+    //define variables
+        $font-stack: Arial,Helvetica , sans-serif;
+        $light-color: #eff;
+        $primary-color: #2424e6;
+        $err-color: red;
+        
 
-.input-error{
-    border: 2px solid $err-color;
-    color: $err-color;
-    &:focus{
-        background-color: grey;
-    }
-}
 
-.loc-img{
-    background-image: url("https://cdn.pixabay.com/photo/2017/05/13/09/04/question-2309042_960_720.jpg");
-}
+    
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        
+    body{
+            background-color: $light-color;
+            font-family: $font-stack;
+            width: 100%;
+            height: 100vh;
+            padding: 3vh 2vh;
+            background-color: #b0f7cf;
+        
+            
+        }
+        
+        // set app-container as a grid
+        #app-container{
+            display: grid;
+            grid-template-columns: 60% 40%;
+            grid-template-rows: 75px 1fr 200px;
+            grid-template-areas:
+            "hd hd"
+            "main contnt"
+            "footer footer";
+                grid-gap: 10px;
+
+            // define header as grid area hd
+            .header{
+                    grid-area: hd;
+                    text-align: center;
+                    font-size: 3em;
+                    font-weight: bold;
+                    color: green;
+                    margin-top: 25px 30px;
+                
+
+
+            }
+            // define image holder div as grid area main
+            #img-holder{
+                grid-area: main;
+                img{
+                    border-radius: 5px;
+                }
+                
+            }
+            // define main content as grid area contnt
+
+            #main{
+                grid-area: contnt;
+                font-size: 1.5em;
+                text-align: center;
+                #user-input{
+                    input{
+                        padding: 0.7em 4.5em;
+                        border: 2px solid #5bedf5;
+                        border-radius: 5px;
+                        box-shadow: 0px 5px 5px 0px #9ad4f5;
+                        font-size: 20px;
+                        text-align: center;
+                    &::placeholder{
+                            font-size: 1.4em;
+                            
+                        }
+                        &:focus{
+                            border: 2px solid #3d40f2; 
+                        }
+                        }
+                    }
+
+                    }
+
+        // define footer as grid area footer
+            
+            #footer{
+                grid-area: footer;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                font-size: 2em;
+                background-color: #c5f5c4;
+                border-radius: 10px;
+                box-shadow: 0px 5px 5px 0px #93fc7c;
+                
+                
+
+            }
+
+     }
+
+        // style buttons
+        #btn {
+            button{
+                padding: 5px 10px;
+                font-size: 1em;
+                border-radius: 5px;
+                border: 1px solid #8febb7;
+                box-shadow: 0px 10px 10px 0px #70cc99;
+                margin-right: 1em;
+                &:hover{
+                    box-shadow: 0px 5px 10px 0px #4da5e8;
+                    color: #e6edf2;
+                    background-color: #49a5eb;; 
+                }
+            }
+            
+        }
+
+        // style input-error class 
+
+        .input-error{
+            border: 2px solid $err-color;
+            color: $err-color;
+            &:focus{
+                background-color: grey;
+            }
+        }
+
+
+
+
+        //<--------------@Media-------------------------->
+
+
+
+
+
+            // @media(max-width: 700px)
+            @media (max-width: 700px){
+                #app-container {display: grid;
+                grid-template-columns: 100%;
+                grid-template-rows: 75px 1fr 1fr 300px;
+                grid-template-areas:
+                "hd"
+                "main "
+                "contnt"
+                "footer";
+            }
+        }
+
+         // @media(min-width: 700px) and (max-width: 1020px)
+        @media(min-width: 700px) and (max-width: 1020px){
+            #app-container {display: grid;
+                grid-template-columns: 100%;
+                grid-template-rows: 75px 1fr 1fr 300px;
+                grid-template-areas:
+                "hd"
+                "main "
+                "contnt"
+                "footer";
+            }
+                
+        }
