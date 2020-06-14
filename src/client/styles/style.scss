@@ -1,7 +1,7 @@
 
     
     
-    //define variables
+    //define all variables
         $font-stack: Arial,Helvetica , sans-serif;
         $light-color: #eff;
         $primary-color: #2424e6;
@@ -78,7 +78,7 @@
                             
                         }
                         &:focus{
-                            border: 2px solid #3d40f2; 
+                            border: 2px solid $primary-color; 
                         }
                         }
                     }

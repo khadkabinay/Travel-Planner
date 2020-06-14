@@ -1,9 +1,9 @@
     
     
-    // import require functions
+    // importing
             import {fetchApiCall, postData ,errorHandler } from "./fetchHandler"
-            import {daysCalculator} from "./daysCount"
-            import{updateUI} from "./uiUpdate"
+            import {daysCalculator}                        from "./daysCount"
+            import{updateUI}                               from "./uiUpdate"
    
     
      // geoNames api info
@@ -26,10 +26,10 @@
             evt.preventDefault()
             const  city            = document.getElementById('desti-location').value
             const departureDate    = document.getElementById('departure-date').value
-            let  geoNamesFullUrl = `${geoBaseUrl}placename=${city}&username=${geoApiUsername}`
-            let fetchedData      = {}
+            let  geoNamesFullUrl   = `${geoBaseUrl}placename=${city}&username=${geoApiUsername}`
+            let fetchedData        = {}
               
-            // fetch data from geoNames API
+            // fetch data from geoNames API call
                 fetchApiCall(geoNamesFullUrl)
                     
                 .then( (data)=>{
@@ -45,7 +45,8 @@
                        
                         let  weathForcastFullUrl = `${weathbitBaseUrl}&city_name=${city},${fetchedData.countryCode}
                                                     &lat=${fetchedData.lat}&lon=${fetchedData.lng}&key=${weathApi_key}`
-                          
+                        
+                        //weatherbit API call 
                             return  fetchApiCall(weathForcastFullUrl )
                         
                         }})
@@ -58,18 +59,29 @@
                             
                             
                         let  pixabayFulUrl = `${pixBaseUrl}key=${PixApi_key}&q=${city}&image_type=photo`
-                          return fetchApiCall(pixabayFulUrl)
+                         
+                        //pixabay API call
+                        return fetchApiCall(pixabayFulUrl)
                           
                             
                           })
                     
                 .then( pixaData =>{
-                    let pixPhoto = pixaData.hits[0].webformatURL
-                          
+                     let pixPhoto =''
+                    
+                     //checking if pixaData is empty
+                    if(pixaData.hits.length === 0){
+                         pixPhoto += 'https://cdn.pixabay.com/photo/2018/03/23/22/11/question-mark-3255140_960_720.jpg'
+                    }else{
+                        
+                        pixPhoto  +=  pixaData.hits[0].webformatURL
+                    }
+           
+                    // postData call with all necessary values       
                     postData("http://localhost:3000/addAll" ,
                     {placeName:fetchedData.placeName, countryCode:fetchedData.countryCode,departureDate:departureDate, low_temp:fetchedData.low_temp, high_temp:fetchedData.high_temp,weathDescription:fetchedData.weathDescription,pixPhoto:pixPhoto })
                         
-                            //fetch all data from server and update into dom 
+                    //fetch all data from server and update into dom 
                     updateUI();
                         })
                        
@@ -82,5 +94,5 @@
     
 
 
- export {geoWeathPixCaller, daysCalculator}
+        export { geoWeathPixCaller, daysCalculator}
     
