@@ -1,7 +1,8 @@
 
     // inporting 
     import { geoWeathPixCaller} from "./app"
-    import { daysCalculator}    from "./daysCount"
+    import { daysCalculator,tripLengthCount}    from "./daysCount"
+
         
     // define updataUI function
         const updateUI = async ()=> {
@@ -18,7 +19,7 @@
                     document.getElementById('location-img').setAttribute('src', allData.pixPhoto)
                     document.getElementById('place-info').innerHTML         = ` <strong>Your trip to:</strong> ${allData.placeName}, ${allData.countryCode}`
                     document.getElementById('departing-date').innerHTML     = ` <strong>Departing:</strong> ${allData.departureDate}`
-                    document.getElementById('returning-date').innerHTML     = ` <strong>Returning:</strong> ${returnDate} <br><br>`
+                    document.getElementById('returning-date').innerHTML     = ` <strong>Returning after:</strong> ${tripLengthCount("'" + allData.departureDate +"'" , returnDate)} days<br><br>`
                     document.getElementById('days-count-info').innerHTML    = ` ${allData.placeName}, ${allData.countryCode} is ${daysCalculator("'" + allData.departureDate +"'")} days away`
                     document.getElementById('min-high-temp').innerHTML      = `<strong>Typical weather for then is:</strong><br> min: ${allData.low_temp} °c /high: ${allData.high_temp} °c`
                     document.getElementById('weather-temp').innerHTML       = ` ${allData.weathDescription}`
