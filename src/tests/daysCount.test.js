@@ -1,6 +1,6 @@
 
 // importing
-const { daysCalculator } = require('./app.js')
+const { daysCalculator } = require('../client/js/daysCount.js')
 
 
 // testing if daysCalculator funtion works
