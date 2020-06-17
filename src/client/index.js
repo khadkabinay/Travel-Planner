@@ -1,5 +1,5 @@
         
-         //importing
+        //importing
         import {geoWeathPixCaller} from './js/app.js'
         import {refreshPage} from './js/uiUpdate.js'
         import "./styles/style.scss"
@@ -10,7 +10,7 @@
             
             
             
-            // click event on save button 
+        // click event on buttons
 
             window.addEventListener('DOMContentLoaded', (event) => {
                  event.preventDefault()

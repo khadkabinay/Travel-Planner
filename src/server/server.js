@@ -1,80 +1,81 @@
 
-            // serve as an endpoint data
+			// serve as an endpoint data
 
-            let projectData = {};
-
-
-            // Require Express to run server and routes
-            const express = require('express');
-            const path    = require("path");
-           
-            
-            /* Start up an instance of app */
-            const app = express();
+			let projectData = {};
 
 
-            /* Middleware*/
-            //Here we are configuring express to use body-parser as middle-ware.
-            const fetch      = require("node-fetch");
-            const bodyParser = require('body-parser')
-            app.use(bodyParser.urlencoded({ extended: false }));
-            app.use(bodyParser.json());
+			// Require Express to run server and routes
+			const express = require('express');
+			const path 	  = require("path");
 
 
-            // Cors for cross origin allowance
-            const cors = require('cors');
-            app.use(cors());
+			/* Start up an instance of app */
+			const app = express();
 
 
-            // Initialize the main project folder
-            app.use(express.static("dist"));
+			/* Middleware*/
+			//Here we are configuring express to use body-parser as middle-ware.
+			const fetch      = require("node-fetch");
+			const bodyParser = require('body-parser')
+			app.use(bodyParser.urlencoded({ extended: false }));
+			app.use(bodyParser.json());
 
 
-            // Setup Server
-            const port   = 3000
-            const server =  app.listen(port, listening);
-            
-            function listening(){
-                console.log(`server is running on localhost:${port}`);
-            };
+			// Cors for cross origin allowance
+			const cors = require('cors');
+			app.use(cors());
 
 
-        app.get('/', function (req, res) {
-            res.sendFile('dist/index.html')
-        })
+			// Initialize the main project folder
+			app.use(express.static("dist"));
 
 
-        // add api fetched data and feelings into an object
+			// Setup Server
+			const port   = 3000
+			const server = app.listen(port, listening);
 
-            app.post('/addAll', addAllToObj);
+			function listening() {
+				console.log(`server is running on localhost:${port}`);
+			};
 
-            function addAllToObj(req,res){
-            
-            // data coming as post request asigned to an object
-        
-            projectData.placeName        = req.body.placeName
-            projectData.countryCode      = req.body.countryCode
-            projectData.departureDate    = req.body.departureDate
-            projectData.low_temp         = req.body.low_temp
-            projectData.high_temp        = req.body.high_temp
-            projectData.weathDescription = req.body.weathDescription
-            projectData.pixPhoto        = req.body.pixPhoto
-            
-            
-                
-            res.send(projectData)
-            };
-            
+
+			app.get('/', function (req, res) {
+				res.sendFile('dist/index.html')
+			})
+
+
+			// add all fetched data into an object named projectData
+
+			app.post('/addAll', addAllToObj);
+
+			function addAllToObj(req, res) {
+
+				// data coming as post request asigned to an object
+
+				projectData.placeName 		 = req.body.placeName
+				projectData.countryCode 	 = req.body.countryCode
+				projectData.departureDate 	 = req.body.departureDate
+				projectData.low_temp 		 = req.body.low_temp
+				projectData.high_temp 		 = req.body.high_temp
+				projectData.weathDescription = req.body.weathDescription
+				projectData.pixPhoto 		 = req.body.pixPhoto
 
 
 
-            //send end point object where it is fetched 
-            app.get("/all",getGeoWeathPixData);
-
-            function getGeoWeathPixData(req,res){
-                        res.send(projectData)
-
-            };
+				res.send(projectData)
+			};
 
 
-            module.exports = app;
+
+
+			//send end point object where it is fetched 
+			app.get("/all", getGeoWeathPixData);
+
+			function getGeoWeathPixData(req, res) {
+				res.send(projectData)
+
+			};
+
+
+			//exporting app instance for testing 
+			module.exports = app;

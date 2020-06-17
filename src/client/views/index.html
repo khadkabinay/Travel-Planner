@@ -1,89 +1,84 @@
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8">
-    <title>Travel Planer</title>
-    <!-- <script type="text/javascript" src="../../../dist/main.js"></script> -->
+	<!DOCTYPE html>
+	<html>
 
-    </head>
-    <body>
-        <!-- top-container -->
-       
-        <div id = "app-container">
-            
-            <!-- header -->
-            <div class ="header">
-                    Travel Planner
-            </div>
-            
-           
-            <!--  image holder -->
-            <!-- <div id ="img-holder"><img src="https://cdn.pixabay.com/photo/2016/07/11/06/09/skyline-1509136_960_720.jpg" alt="Pixabay image" id ="location-img"  style ="width:100%; height: 100%;">
-            </div> -->
-            <div id ="img-holder"><img src="../media/houston.jpg" alt="Pixabay image" id ="location-img"  style ="width:100%; height: 100%;">
-            </div>
-            
-           
-            <!-- main section -->
-            <div id = "main">
-            
-                <!-- user input field -->
-                <div id = "user-input">
-                    <div>
-                    <label for="desti-location">Your trip to:</label><br>
-                        <input type="text" id="desti-location" placeholder="City (Houston)">
-                        <div id = "error-content"></div>
-                    </div>
-                
-                    <div class ="depart-date-holder">
-                        <label for="departure">Departing:</label><br>
-                        <input type="date" id="departure-date">
-                    </div> 
-            
-                    <div class ="depart-date-holder">
-                        <label for="departure">Returning:</label><br>
-                        <input type="date" id="return-date">
-                    </div>
-                </div><br>
-            
-                
-                
-                <!-- result holder container -->
-                <div id = "result-hold" class = "results-holder">
-                    <div><span id ="place-info"></span></div>
-                    <div><span id ="departing-date"></span></div>
-                    <div><span id ="returning-date"></span></div>
-                    
-                    <!-- button that helps search input and refresh the page   -->
-                    <div id = "btn">
-                        <button id="save-trip" type = "submit"> Save Trip </button>
-                        <button id = "remove-trip" type="submit" >Remove Trip</button>
-                    </div><br>
-                    <div><span id ="days-count-info"></span></div>
-                    <div><span id ="min-high-temp"></span></div>
-                    <div><span id ="weather-temp"></span></div> 
-                    
-                    </div>
-            
-            </div>
-    
-                
-            <!-- footer -->
-            <div id = "footer">@CopyRight 2020 Travel App || Privacy ||</div>
-        </div>
-     
-        <script>
-                    
-            // Check that service workers are supported
-            if ('serviceWorker' in navigator) {
-                
-                // Use the window load event to keep the page load performance
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
-                });
-            }
-        </script>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Travel Planner</title>
+	</head>
 
-       
-    </body>
-    </html>
+	<body>
+<!-- app-container -->
+
+		<div id="app-container">
+			
+<!-- header div-->
+			<div id="header">
+				Travel Planner
+			</div>
+
+
+<!--  image holder div -->
+			<div id="img-holder">
+				<img src = "https://cdn.pixabay.com/photo/2020/06/04/09/46/nepal-5258060_960_720.jpg" alt="Pixabay image"
+					style="width: 100%; height: 100%;" />
+			</div>
+
+<!-- content holder div -->
+			<div id="content-holder">
+				
+<!-- user input field -->
+				<div id="user-input">
+					<div class="city-name-holder">
+						<label for="desti-location">Your trip to:</label><br/>
+						<input type="text" id="desti-location" placeholder="City"/>
+						<div id="error-content"></div>
+					</div>
+
+					<div class="depart-date-holder">
+						<label for="departure-date">Departing:</label><br/>
+						<input type="date" id="departure-date"/>
+					</div>
+
+					<div class="return-date-holder">
+						<label for="return-date">Returning:</label><br/>
+						<input type="date" id="return-date"/>
+					</div>
+				</div>
+				<br />
+
+<!-- result holder div -->
+				<div class="results-holder">
+					<div><span id="place-result"></span></div>
+					<div><span id="depart-result"></span></div>
+					<div><span id="return-result"></span></div>
+
+<!-- button that helps search input and refresh the page   -->
+					<div id="save-remove-btn">
+						<button id="save-trip" type="submit">Save Trip</button>
+						<button id="remove-trip" type="submit">Remove Trip</button>
+					</div>
+					<br/>
+					<div><span id="days-count-info"></span></div>
+					<div><span id="min-high-temp"></span></div>
+					<div><span id="weather"></span></div>
+				</div>
+			</div>
+
+<!-- footer div -->
+			<div id="footer">@CopyRight 2020 Travel App || Privacy ||</div>
+		</div>
+
+
+<!-- service worker added -->
+		<script>
+			// Check that service workers are supported
+			if ("serviceWorker" in navigator) {
+				// Use the window load event to keep the page load performance
+				window.addEventListener("load", () => {
+					navigator.serviceWorker.register("/service-worker.js");
+				});
+			}
+		</script>
+	</body>
+
+	</html>

@@ -1,7 +1,7 @@
 
     
     
-    //define all variables
+//define all variables
         $font-stack: Arial,Helvetica , sans-serif;
         $light-color: #eff;
         $primary-color: #2424e6;
@@ -28,19 +28,20 @@
             
         }
         
-        // set app-container as a grid
+// set app-container as a grid
         #app-container{
             display: grid;
             grid-template-columns: 60% 40%;
-            grid-template-rows: 75px 1fr 200px;
+            grid-template-rows: 75px 1fr 100px;
             grid-template-areas:
             "hd hd"
-            "main contnt"
+            "img contnt"
             "footer footer";
                 grid-gap: 10px;
 
-            // define header as grid area hd
-            .header{
+
+// define header as grid area hd
+            #header{
                     grid-area: hd;
                     text-align: center;
                     font-size: 3em;
@@ -51,17 +52,20 @@
 
 
             }
-            // define image holder div as grid area main
+
+// define image holder div as grid area main
             #img-holder{
-                grid-area: main;
+                grid-area: img;
                 img{
                     border-radius: 5px;
                 }
+             
                 
             }
-            // define main content as grid area contnt
+            
+// define main content as grid area contnt
 
-            #main{
+            #content-holder{
                 grid-area: contnt;
                 font-size: 1.5em;
                 text-align: center;
@@ -85,7 +89,7 @@
 
                     }
 
-        // define footer as grid area footer
+// define footer as grid area footer
             
             #footer{
                 grid-area: footer;
@@ -104,8 +108,8 @@
 
      }
 
-        // style buttons
-        #btn {
+// style buttons
+        #save-remove-btn {
             button{
                 padding: 5px 10px;
                 font-size: 1em;
@@ -122,7 +126,7 @@
             
         }
 
-        // style input-error class 
+// style input-error class 
 
         .input-error{
             border: 2px solid $err-color;
@@ -135,33 +139,33 @@
 
 
 
-        //<--------------@Media-------------------------->
+//<--------------@Media-------------------------->
 
 
 
 
 
-            // @media(max-width: 700px)
+// @media(max-width: 700px)
             @media (max-width: 700px){
                 #app-container {display: grid;
                 grid-template-columns: 100%;
-                grid-template-rows: 75px 1fr 1fr 300px;
+                grid-template-rows: 75px 500px 1fr 100px;
                 grid-template-areas:
                 "hd"
-                "main "
+                "img"
                 "contnt"
                 "footer";
             }
         }
 
-         // @media(min-width: 700px) and (max-width: 1020px)
-        @media(min-width: 700px) and (max-width: 1020px){
+ // @media(min-width: 700px) and (max-width: 1150px)
+        @media(min-width: 700px) and (max-width: 1100px){
             #app-container {display: grid;
                 grid-template-columns: 100%;
-                grid-template-rows: 75px 1fr 1fr 300px;
+                grid-template-rows: 75px 500px 1fr 100px;
                 grid-template-areas:
                 "hd"
-                "main "
+                "img"
                 "contnt"
                 "footer";
             }
