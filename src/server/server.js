@@ -7,6 +7,7 @@
 			// Require Express to run server and routes
 			const express = require('express');
 			const path 	  = require("path");
+			require('dotenv').config()
 
 
 			/* Start up an instance of app */
@@ -31,7 +32,7 @@
 
 
 			// Setup Server
-			const port   = 3000
+			const port   = process.env.PORT || 3000
 			const server = app.listen(port, listening);
 
 			function listening() {
